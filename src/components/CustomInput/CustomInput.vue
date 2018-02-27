@@ -8,7 +8,13 @@
       :name="name"
       :value="input_value"
       @input="$_updateValue"
+      @blur="$_broadcastEvent($event)"
       type="text">
+    <p class="custom-input__error-message">
+      <span v-show="hasError">
+        {{ errorMessage }}
+      </span>
+    </p>
   </section>
 </template>
 <style lang="less">
@@ -25,6 +31,12 @@
     text-align: left;
     font-size: @exs-font-size;
     font-weight: @font-weight-bolder;
+  }
+
+  &__error-message {
+    height: 20px;
+    text-align: left;
+    padding-top: 5px;
   }
 
   &__input {
@@ -70,6 +82,16 @@ export default {
       type: String,
       default: '',
       description: 'Mask pattern for the input using "awesome-mask"'
+    },
+    errorMessage: {
+      type: String,
+      default: '',
+      description: 'Message for a nagative validation response'
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
+      description: 'Force a negative validation response'
     }
   },
   data () {
@@ -83,6 +105,9 @@ export default {
       process.nextTick(() => {
         this.$emit('input', this.input_value)
       })
+    },
+    $_broadcastEvent ($event) {
+      this.$emit($event.type, $event)
     }
   },
   watch: {

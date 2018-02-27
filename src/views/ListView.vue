@@ -7,22 +7,32 @@
         mask="money"
         class="list-view__value-input"
         :value="transaction.value"
+        data-vv-as="transactionValue"
+        :hasError="errors.has('transactionValue')"
         v-model="transaction.value"
-        name="transaction">
+        name="transactionValue">
       </custom-input>
       <custom-input
+        v-validate="'required'"
         label="Description:"
         v-model="transaction.description"
         :value="transaction.description"
-        name="transaction">
+        data-vv-as="transactionDesc"
+        :hasError="errors.has('transactionDesc')"
+        errorMessage="Field required"
+        name="transactionDesc">
       </custom-input>
       <custom-input
         label="Creation Date:"
         class="list-view__date-input"
+        v-validate="'required|date_format:DD/MM/YYYY'"
         mask="99/99/9999"
         v-model="transaction.createdAt"
         :value="transaction.createdAt"
-        name="transaction">
+        :hasError="errors.has('transactionCreation')"
+        errorMessage="Field required"
+        data-vv-as="transactionCreation"
+        name="transactionCreation">
       </custom-input>
       <button class="tl-button" @click="$_saveTransaction">Save</button>
     </div>
@@ -36,7 +46,7 @@
 
   &__form {
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
 
     .custom-input {
@@ -73,11 +83,16 @@ export default {
   },
   methods: {
     $_saveTransaction () {
-      this.transaction.createdAt = moment(this.transaction.createdAt, 'DD/MM/YYYY', true)
-      debugger
-      this.transactions.push(this.transaction)
-      localStorage.setItem('transactions', JSON.stringify(this.transactions))
-      this.transaction = new TransactionModel(0, '')
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.transaction.createdAt = moment(this.transaction.createdAt, 'DD/MM/YYYY', true)
+          this.transactions.push(this.transaction)
+          localStorage.setItem('transactions', JSON.stringify(this.transactions))
+          this.transaction = new TransactionModel(0, '')
+          return
+        }
+        alert('Correct them errors!')
+      })
     }
   },
   mounted () {
