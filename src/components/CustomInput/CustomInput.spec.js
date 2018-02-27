@@ -25,6 +25,19 @@ describe('CustomInput', () => {
     expect(label.text()).toEqual('Transaction')
   })
 
+  it('renders the error', () => {
+    customInput = mount(CustomInput, {
+      propsData: {
+        label: 'Transaction',
+        name: 'value',
+        hasError: true,
+        errorMessage: 'Field required'
+      }
+    })
+    let errorMessage = customInput.find('.custom-input__error-message span')
+    expect(errorMessage.text()).toEqual('Field required')
+  })
+
   it('renders correctly with different props', () => {
     const spy = jest.fn();
     customInput.vm.$on('input', spy)
