@@ -1,10 +1,11 @@
 export default class TransactionModel {
-  constructor () {
-    this.value = 0
-    this.description = ''
+  constructor (value, description, date = '') {
+    this.value = value
+    this.description = description
+    this.createdAt = date
   }
 
-  get valueAsNumber () {
+  valueAsNumber () {
     let newValue = this.value.replace(',', '.').replace(/[.](?=.*[.])/g, '')
     return Number(newValue)
   }
