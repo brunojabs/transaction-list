@@ -8,18 +8,20 @@
         class="list-view__value-input"
         :value="transaction.value"
         data-vv-as="transactionValue"
+        v-validate="'required'"
         :hasError="errors.has('transactionValue')"
+        :errorMessage="errors.first('transactionValue')"
         v-model="transaction.value"
         name="transactionValue">
       </custom-input>
       <custom-input
-        v-validate="'required'"
         label="Description:"
         v-model="transaction.description"
         :value="transaction.description"
         data-vv-as="transactionDesc"
+        v-validate="'required'"
         :hasError="errors.has('transactionDesc')"
-        errorMessage="Field required"
+        :errorMessage="errors.first('transactionDesc')"
         name="transactionDesc">
       </custom-input>
       <custom-input
@@ -30,7 +32,7 @@
         v-model="transaction.createdAt"
         :value="transaction.createdAt"
         :hasError="errors.has('transactionCreation')"
-        errorMessage="Field required"
+        :errorMessage="errors.first('transactionCreation')"
         data-vv-as="transactionCreation"
         name="transactionCreation">
       </custom-input>
@@ -77,7 +79,7 @@ export default {
   },
   data () {
     return {
-      transaction: new TransactionModel(0, ''),
+      transaction: new TransactionModel(),
       transactions: []
     }
   },

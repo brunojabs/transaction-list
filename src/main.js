@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 
 import VeeValidate from 'vee-validate'
+import dict from './locale/validateDict'
 
 Vue.use(VeeValidate, { events: 'blur' })
 Vue.config.productionTip = false
@@ -12,6 +13,9 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  beforeCreate () {
+    this.$validator.localize('en', dict)
+  },
   router,
   components: { App },
   template: '<App/>'
