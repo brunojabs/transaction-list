@@ -5,6 +5,7 @@
       v-mask="mask"
       :aria-labelledby="label"
       :name="name"
+      :value="input_value"
       @input="$_updateValue"
       type="text">
   </section>
@@ -58,6 +59,14 @@ export default {
       process.nextTick(() => {
         this.$emit('input', this.input_value)
       })
+    }
+  },
+  watch: {
+    value: {
+      handler (val, oldVal) {
+        this.input_value = val
+        this.$emit('input', val)
+      }
     }
   }
 }
