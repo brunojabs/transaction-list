@@ -1,6 +1,7 @@
 <template>
   <section class="list-view">
-    <h2>Add transaction</h2>
+    <h2>Transaction list</h2>
+    <h4>You can add a minus sign in front of the value</h4>
     <div class="list-view__form">
       <custom-input
         label="Value:"

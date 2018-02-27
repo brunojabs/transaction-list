@@ -5,12 +5,16 @@
         <span class="transaction-list__date">Transaction date</span>
         <span class="f-col">Description</span>
         <span class="transaction-list__amount">Amount</span>
+        <span class="transaction-list__actions">Actions</span>
       </li>
-      <li class="f-row transaction-list__item" v-for="(item, key) in transactions" :key="key">
-        <span class="transaction-list__date">{{ item.createdAt | date }}</span>
-        <span class="f-col">{{ item.description }}</span>
-        <span class="transaction-list__amount">R$ {{ item.value }}</span>
-      </li>
+      <transition-group name="fade">
+        <li class="f-row transaction-list__item" v-for="(item, key) in sorted_transactions" :key="key">
+          <span class="transaction-list__date">{{ item.createdAt | date }}</span>
+          <span class="f-col">{{ item.description }}</span>
+          <span class="transaction-list__amount">R$ {{ item.value }}</span>
+          <span class="transaction-list__actions" @click="$_remove(item)">Remove</span>
+        </li>
+      </transition-group>
     </ul>
     <div class="transaction-list__total">
       <span class="transaction-list__total-label">Total:</span>
@@ -20,6 +24,7 @@
 </template>
 <style lang="less">
 @item-padding: 5px;
+@actions-size: 100px;
 .transaction-view {
   max-width: 920px;
   margin: 0 auto;
@@ -42,10 +47,15 @@
     text-align: left;
   }
 
+  &__actions {
+    flex-basis: @actions-size;
+    text-align: left;
+  }
+
   &__total {
     float: right;
     text-align: left;
-    width: 150px + @item-padding;
+    width: 150px + @item-padding + @actions-size;
     display: block;
   }
 
@@ -65,6 +75,7 @@
 
 <script>
 import dateFilter from '@/filters/date'
+import moment from 'moment'
 
 export default {
   filters: {
@@ -75,13 +86,22 @@ export default {
       if (!this.transactions.length) return 0
       return this.transactions.reduce((acumulador, actual) => {
         return acumulador + actual.valueAsNumber()
-      }, 0)
+      }, 0).toFixed(2)
     },
     sorted_transactions () {
       let sorted = this.transactions.slice()
       return sorted.sort((a, b) => {
-        return b.createdAt - a.createdAt
+        return moment(b.createdAt).format('X') - moment(a.createdAt).format('X')
       })
+    }
+  },
+  methods: {
+    $_remove (item) {
+      const index = this.transactions.indexOf(item)
+      if (index > -1) {
+        this.transactions.splice(index, 1)
+        localStorage.setItem('transactions', JSON.stringify(this.transactions))
+      }
     }
   },
   props: {
