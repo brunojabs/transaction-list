@@ -8,7 +8,7 @@
   </section>
 </template>
 <script>
-import CustomInput from 'src/views/CustomInput/CustomInput'
+import CustomInput from '@/components/CustomInput/CustomInput'
 
 export default {
   component: {
