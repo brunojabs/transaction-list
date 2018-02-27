@@ -65,6 +65,17 @@
     max-width: 120px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .list-view {
+    max-width: 95%;
+    margin: 0 auto;
+
+    &__form {
+      flex-wrap: wrap;
+    }
+  }
+}
 </style>
 
 <script>

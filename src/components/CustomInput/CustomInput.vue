@@ -3,6 +3,7 @@
     <label class="custom-input__label" :for="name" v-text="label"></label>
     <input
       class="custom-input__input"
+      :class="modifiers"
       v-mask="mask"
       :aria-labelledby="label"
       :name="name"
@@ -37,16 +38,22 @@
     height: 20px;
     text-align: left;
     padding-top: 5px;
+    color: red;
   }
 
   &__input {
-      display: block;
-      padding: 3px 0;
-      font-size: @lg-font-size;
-      border: none;
-      border-bottom: solid 1px gray;
-      background-color: transparent;
+    display: block;
+    padding: 3px 0;
+    font-size: @lg-font-size;
+    border: none;
+    border-bottom: solid 1px gray;
+    background-color: transparent;
+
+    &.--has-error {
+      color: red;
+      border-bottom-color: red;
     }
+  }
 }
 </style>
 <script>
@@ -97,6 +104,13 @@ export default {
   data () {
     return {
       input_value: ''
+    }
+  },
+  computed: {
+    modifiers () {
+      return {
+        '--has-error': this.hasError
+      }
     }
   },
   methods: {

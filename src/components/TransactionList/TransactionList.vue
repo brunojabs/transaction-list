@@ -74,6 +74,18 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .transaction-list__item {
+    flex-wrap: wrap;
+    border: 1px solid gray;
+    margin-top: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    span {
+      flex-basis: 100%;
+    }
+  }
+}
 </style>
 
 <script>
