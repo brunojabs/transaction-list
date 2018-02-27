@@ -12,7 +12,7 @@
           <span class="transaction-list__date">{{ item.createdAt | date }}</span>
           <span class="f-col">{{ item.description }}</span>
           <span class="transaction-list__amount">R$ {{ item.value }}</span>
-          <span class="transaction-list__actions" @click="$_remove(item)">Remove</span>
+          <span class="transaction-list__actions"><a @click="$_remove(item)">Remove</a></span>
         </li>
       </transition-group>
     </ul>
@@ -50,6 +50,9 @@
   &__actions {
     flex-basis: @actions-size;
     text-align: left;
+    a {
+      cursor: pointer;
+    }
   }
 
   &__total {

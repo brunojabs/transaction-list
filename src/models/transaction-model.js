@@ -8,7 +8,8 @@ export default class TransactionModel {
   valueAsNumber () {
     let value = 0
     if (this.value && this.value.replace) {
-      value = Number(this.value.replace(',', '.').replace(/[.](?=.*[.])/g, ''))
+      const REMOVE_ALL_DOTS_EXCEPT_LAST = /[.](?=.*[.])/g
+      value = Number(this.value.replace(',', '.').replace(REMOVE_ALL_DOTS_EXCEPT_LAST, ''))
     }
     return value
   }
