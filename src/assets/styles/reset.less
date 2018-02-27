@@ -1,0 +1,55 @@
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+html{
+  font-family: Helvetica, arial, sans-serif;
+}
+
+html, body{
+  height: 100%;
+}
+body{
+  width: 100%;
+  letter-spacing: .04em;
+  color: black;
+}
+
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+a{
+  color: red;
+  text-decoration: underline;
+  &:hover{
+    color: lighten(red, 10%);
+  }
+}
+
+p:first-of-type{
+  margin-top: 0;
+}
+
+::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+[class^='icon-'],
+[class*=' icon-']{
+  vertical-align: middle;
+}
+
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+[v-cloak] {
+  display:none;
+}
