@@ -6,7 +6,10 @@ export default class TransactionModel {
   }
 
   valueAsNumber () {
-    let newValue = this.value.replace(',', '.').replace(/[.](?=.*[.])/g, '')
-    return Number(newValue)
+    let value = 0
+    if (this.value && this.value.replace) {
+      value = Number(this.value.replace(',', '.').replace(/[.](?=.*[.])/g, ''))
+    }
+    return value
   }
 }

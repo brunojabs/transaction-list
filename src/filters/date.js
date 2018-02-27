@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-export default (date, format = 'DD/MM/YYYY - hh:mm', formatFrom) => {
+export default (date, format = 'DD/MM/YYYY', formatFrom) => {
   let dateFormated = ''
 
   if (formatFrom) {
