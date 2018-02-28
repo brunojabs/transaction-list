@@ -19,9 +19,7 @@
   </section>
 </template>
 <style lang="less">
-@exs-font-size: 12px;
-@font-weight-bolder: 700;
-@lg-font-size: 20px;
+@import '../../assets/styles/main';
 
 .custom-input {
   display: inline-flex;
@@ -31,14 +29,14 @@
     text-transform: uppercase;
     text-align: left;
     font-size: @exs-font-size;
-    font-weight: @font-weight-bolder;
+    font-weight: bolder;
   }
 
   &__error-message {
     height: 20px;
     text-align: left;
-    padding-top: 5px;
-    color: red;
+    padding-top: @exs-spacer;
+    color: @red;
   }
 
   &__input {
@@ -46,12 +44,12 @@
     padding: 3px 0;
     font-size: @lg-font-size;
     border: none;
-    border-bottom: solid 1px gray;
+    border-bottom: solid 1px @gray;
     background-color: transparent;
 
     &.--has-error {
-      color: red;
-      border-bottom-color: red;
+      color: @red;
+      border-bottom-color: @red;
     }
   }
 }
@@ -64,11 +62,6 @@ export default {
     mask: AwesomeMask
   },
   props: {
-    helperText: {
-      type: String,
-      default: '',
-      description: 'helper text, appear on left side of the label'
-    },
     label: {
       type: String,
       default: '',

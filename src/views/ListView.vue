@@ -46,23 +46,23 @@
 @import '../assets/styles/main';
 
 .list-view {
-
+  @input-size: 120px;
   &__form {
     display: flex;
     align-items: end;
     justify-content: center;
 
     .custom-input {
-      margin-right: 10px;
+      margin-right: @xs-spacer;
     }
   }
 
   &__date-input {
-    max-width: 120px;
+    max-width: @input-size;
   }
 
   &__value-input {
-    max-width: 120px;
+    max-width: @input-size;
   }
 }
 

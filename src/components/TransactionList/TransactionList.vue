@@ -26,8 +26,10 @@
   </section>
 </template>
 <style lang="less">
-@item-padding: 5px;
+@import '../../assets/styles/main';
+
 @actions-size: 100px;
+@base-item-size: 150px;
 .transaction-view {
   max-width: 920px;
   margin: 0 auto;
@@ -36,17 +38,17 @@
   list-style: none;
 
   &__item {
-    border-bottom: 1px solid gray;
-    padding: @item-padding;
+    border-bottom: 1px solid @gray;
+    padding: @exs-spacer;
   }
 
   &__date {
-    flex-basis: 150px;
+    flex-basis: @base-item-size;
     text-align: left;
   }
 
   &__amount {
-    flex-basis: 150px;
+    flex-basis: @base-item-size;
     text-align: left;
   }
 
@@ -61,18 +63,18 @@
   &__total {
     float: right;
     text-align: left;
-    width: 150px + @item-padding + @actions-size;
+    width: @base-item-size + @exs-spacer + @actions-size;
     display: block;
   }
 
   &__total-label {
     display: block;
     font-weight: bold;
-    margin-top: @item-padding;
+    margin-top: @exs-spacer;
   }
 
   &__title {
-    padding: 5px;
+    padding: @exs-spacer;
     span {
       font-weight: bold;
     }
@@ -87,9 +89,9 @@
   .transaction-list {
     &__item {
       flex-wrap: wrap;
-      border: 1px solid gray;
-      margin-top: 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      border: 1px solid @gray;
+      margin-top: @xs-spacer;
+      box-shadow: @base-shadow;
       span {
         flex-basis: 100%;
       }
