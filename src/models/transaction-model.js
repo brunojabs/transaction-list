@@ -1,5 +1,7 @@
+import moment from 'moment'
+
 export default class TransactionModel {
-  constructor (value, description, date = '') {
+  constructor (value, description, date = moment().format('DD/MM/YYYY')) {
     this.value = value
     this.description = description
     this.createdAt = date
