@@ -13,7 +13,7 @@
             <span class="transaction-list__mobile-title">Date: </span>
             <span class="transaction-list__date-value">{{ item.createdAt | date }}</span>
           </span>
-          <span class="f-col"><span class="transaction-list__mobile-title">Description: </span>{{ item.description }}</span>
+          <span class="f-col transaction-list__description.f-col"><span class="transaction-list__mobile-title">Description: </span>{{ item.description }}</span>
           <span class="transaction-list__amount"><span class="transaction-list__mobile-title">Amount: </span>R$ {{ item.value }}</span>
           <span role="button" class="transaction-list__actions"><a class="transaction-list__actions-remove" @click="$_remove(item)">Remove</a></span>
         </li>
@@ -37,17 +37,24 @@
 .transaction-list {
   list-style: none;
 
+  &__amount {
+    flex-basis: @base-item-size;
+    text-align: left;
+    white-space: nowrap;
+  }
+
   &__item {
     border-bottom: 1px solid @gray;
     padding: @exs-spacer;
+
+    span {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &__date {
-    flex-basis: @base-item-size;
-    text-align: left;
-  }
-
-  &__amount {
     flex-basis: @base-item-size;
     text-align: left;
   }
@@ -96,12 +103,19 @@
         flex-basis: 100%;
       }
     }
+
     &__title {
       display: none;
     }
+
+    &__description.f-col {
+      flex-basis: 100%;
+    }
+
     &__total {
       float: left;
     }
+
     &__mobile-title {
       display: inline;
       font-weight: bold;
