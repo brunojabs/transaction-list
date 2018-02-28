@@ -1,7 +1,7 @@
 {
   "name": "TransactionList",
   "short_name": "TransactionList",
-  "start_url": "http://",
+  "start_url": "https://transaction-list.firebaseapp.com/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#263238",
