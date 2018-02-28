@@ -6,9 +6,12 @@ import router from './router'
 
 import VeeValidate from 'vee-validate'
 import dict from './locale/validateDict'
+import * as OfflinePluginRuntime from 'offline-plugin/runtime'
 
 Vue.use(VeeValidate, { events: 'blur' })
 Vue.config.productionTip = false
+
+OfflinePluginRuntime.install()
 
 /* eslint-disable no-new */
 new Vue({

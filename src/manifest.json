@@ -1,0 +1,10 @@
+{
+  "name": "TransactionList",
+  "short_name": "TransactionList",
+  "start_url": "http://",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#263238",
+  "theme_color": "#263238",
+  "description": "TransactionList"
+}
