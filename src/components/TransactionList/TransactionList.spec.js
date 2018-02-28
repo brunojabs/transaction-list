@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-
+import moment from 'moment'
 import TransactionList from './TransactionList'
 import TransactionModel from '../../models/transaction-model'
 
@@ -26,5 +26,14 @@ describe('TransactionList', () => {
 
   it('sort the total list by date with older in last position', () => {
     expect(transactionList.vm.sorted_transactions[2].value).toEqual('-1000.90')
+  })
+
+  it('should display data in brazilian format', () => {
+    expect(transactionList.find('.transaction-list__date-value').text()).toEqual(moment().format('DD/MM/YYYY'))
+  })
+
+  it('should remove a item', () => {
+    transactionList.find('.transaction-list__actions-remove').trigger('click')
+    expect(transactionList.vm.transactions.length).toEqual(2)
   })
 })

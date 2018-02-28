@@ -9,10 +9,13 @@
       </li>
       <transition-group name="fade">
         <li class="f-row transaction-list__item" v-for="(item, key) in sorted_transactions" :key="key">
-          <span class="transaction-list__date"><span class="transaction-list__mobile-title">Date: </span>{{ item.createdAt | date }}</span>
+          <span class="transaction-list__date">
+            <span class="transaction-list__mobile-title">Date: </span>
+            <span class="transaction-list__date-value">{{ item.createdAt | date }}</span>
+          </span>
           <span class="f-col"><span class="transaction-list__mobile-title">Description: </span>{{ item.description }}</span>
           <span class="transaction-list__amount"><span class="transaction-list__mobile-title">Amount: </span>R$ {{ item.value }}</span>
-          <span role="button" class="transaction-list__actions"><a @click="$_remove(item)">Remove</a></span>
+          <span role="button" class="transaction-list__actions"><a class="transaction-list__actions-remove" @click="$_remove(item)">Remove</a></span>
         </li>
       </transition-group>
     </ul>
