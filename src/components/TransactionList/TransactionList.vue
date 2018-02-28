@@ -121,10 +121,9 @@ export default {
   computed: {
     total_amount () {
       if (!this.transactions.length) return 0
-      let total = this.transactions.reduce((acumulador, actual) => {
-        return acumulador + actual.valueAsNumber()
-      }, 0)
-      return total
+      let total = this.transactions.reduce((acumulador, actual) =>
+        acumulador + actual.valueAsNumber(), 0)
+      return Number(total.toFixed(2))
     },
     sorted_transactions () {
       let sorted = this.transactions.slice()

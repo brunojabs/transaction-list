@@ -114,8 +114,7 @@ export default {
     let itens = localStorage.getItem('transactions')
     if (itens) {
       this.transactions = JSON.parse(itens).map((e) => {
-        e.valueAsNumber = new TransactionModel(e.value, e.description).valueAsNumber
-        return e
+        return new TransactionModel(e.value, e.description, e.createdAt)
       })
     }
   }
