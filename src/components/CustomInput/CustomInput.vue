@@ -124,6 +124,9 @@ export default {
       this.$emit($event.type, $event)
     }
   },
+  mounted () {
+    this.input_value = this.value
+  },
   watch: {
     value: {
       handler (val, oldVal) {

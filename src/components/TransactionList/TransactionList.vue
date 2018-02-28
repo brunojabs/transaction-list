@@ -9,9 +9,9 @@
       </li>
       <transition-group name="fade">
         <li class="f-row transaction-list__item" v-for="(item, key) in sorted_transactions" :key="key">
-          <span class="transaction-list__date">{{ item.createdAt | date }}</span>
-          <span class="f-col">{{ item.description }}</span>
-          <span class="transaction-list__amount">R$ {{ item.value }}</span>
+          <span class="transaction-list__date"><span class="transaction-list__mobile-title">Date: </span>{{ item.createdAt | date }}</span>
+          <span class="f-col"><span class="transaction-list__mobile-title">Description: </span>{{ item.description }}</span>
+          <span class="transaction-list__amount"><span class="transaction-list__mobile-title">Amount: </span>R$ {{ item.value }}</span>
           <span role="button" class="transaction-list__actions"><a @click="$_remove(item)">Remove</a></span>
         </li>
       </transition-group>
@@ -69,20 +69,37 @@
   }
 
   &__title {
+    padding: 5px;
     span {
       font-weight: bold;
     }
   }
+
+  &__mobile-title {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-  .transaction-list__item {
-    flex-wrap: wrap;
-    border: 1px solid gray;
-    margin-top: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    span {
-      flex-basis: 100%;
+  .transaction-list {
+    &__item {
+      flex-wrap: wrap;
+      border: 1px solid gray;
+      margin-top: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      span {
+        flex-basis: 100%;
+      }
+    }
+    &__title {
+      display: none;
+    }
+    &__total {
+      float: left;
+    }
+    &__mobile-title {
+      display: inline;
+      font-weight: bold;
     }
   }
 }

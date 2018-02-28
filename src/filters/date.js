@@ -13,6 +13,5 @@ export default (date, format = 'DD/MM/YYYY', formatFrom) => {
     dateFormated = 'Invalid date'
   }
 
-
   return dateFormated
 }
