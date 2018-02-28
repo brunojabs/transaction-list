@@ -74,6 +74,9 @@
     &__form {
       flex-wrap: wrap;
     }
+    .custom-input {
+      min-width: 100%;
+    }
   }
 }
 </style>
@@ -103,9 +106,7 @@ export default {
           this.transactions.push(this.transaction)
           localStorage.setItem('transactions', JSON.stringify(this.transactions))
           this.transaction = new TransactionModel(0, '')
-          return
         }
-        alert('Correct them errors!')
       })
     }
   },
