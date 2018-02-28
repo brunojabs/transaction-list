@@ -6,13 +6,13 @@ let localStorageMock = (() => {
   let store = {}
 
   return {
-    getItem: (key) => {
+    getItem (key) {
       return store[key] || null
     },
-    setItem: (key, value) => {
+    setItem (key, value) {
       store[key] = value.toString()
     },
-    clear: () => {
+    clear () {
       store = {}
     }
   }

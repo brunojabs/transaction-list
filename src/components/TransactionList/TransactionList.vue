@@ -126,7 +126,7 @@ export default {
       return Number(total.toFixed(2))
     },
     sorted_transactions () {
-      let sorted = this.transactions.slice()
+      let sorted = Array.from(this.transactions)
       return sorted.sort((a, b) => {
         return moment(b.createdAt).format('X') - moment(a.createdAt).format('X')
       })

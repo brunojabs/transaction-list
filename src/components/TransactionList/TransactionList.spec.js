@@ -32,6 +32,10 @@ describe('TransactionList', () => {
     expect(transactionList.find('.transaction-list__date-value').text()).toEqual(moment().format('DD/MM/YYYY'))
   })
 
+  it('should display all the transactions', () => {
+    expect(transactionList.findAll('.transaction-list__item').length).toEqual(3)
+  })
+
   it('should remove a item', () => {
     transactionList.find('.transaction-list__actions-remove').trigger('click')
     expect(transactionList.vm.transactions.length).toEqual(2)

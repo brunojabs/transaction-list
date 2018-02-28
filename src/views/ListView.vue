@@ -99,13 +99,16 @@ export default {
     }
   },
   methods: {
+    clearTransaction () {
+      this.transaction = new TransactionModel(0, '')
+    },
     $_saveTransaction () {
       this.$validator.validateAll().then((result) => {
         if (result) {
           this.transaction.createdAt = moment(this.transaction.createdAt, 'DD/MM/YYYY', true)
           this.transactions.push(this.transaction)
           localStorage.setItem('transactions', JSON.stringify(this.transactions))
-          this.transaction = new TransactionModel(0, '')
+          this.clearTransaction()
         }
       })
     }
@@ -113,9 +116,8 @@ export default {
   mounted () {
     let itens = localStorage.getItem('transactions')
     if (itens) {
-      this.transactions = JSON.parse(itens).map((e) => {
-        return new TransactionModel(e.value, e.description, e.createdAt)
-      })
+      this.transactions = JSON.parse(itens)
+        .map((e) => new TransactionModel(e.value, e.description, e.createdAt))
     }
   }
 }
