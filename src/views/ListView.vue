@@ -4,7 +4,7 @@
     <h4>You can add a minus sign in front of the value</h4>
     <div class="list-view__form">
       <custom-input
-        label="Value:"
+        label="Value"
         mask="money"
         class="list-view__value-input"
         :value="transaction.value"
@@ -16,7 +16,7 @@
         name="transactionValue">
       </custom-input>
       <custom-input
-        label="Description:"
+        label="Description"
         v-model="transaction.description"
         :value="transaction.description"
         data-vv-as="transactionDesc"
@@ -26,7 +26,7 @@
         name="transactionDesc">
       </custom-input>
       <custom-input
-        label="Creation Date:"
+        label="Creation Date"
         class="list-view__date-input"
         v-validate="'required|date_format:DD/MM/YYYY'"
         mask="99/99/9999"
