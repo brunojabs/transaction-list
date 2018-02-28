@@ -2,17 +2,17 @@
   <section class="transaction-view">
     <ul class="transaction-list">
       <li class="f-row transaction-list__title">
-        <span class="transaction-list__date">Transaction date</span>
-        <span class="f-col">Description</span>
-        <span class="transaction-list__amount">Amount</span>
-        <span class="transaction-list__actions">Actions</span>
+        <span role="heading" class="transaction-list__date">Transaction date</span>
+        <span role="heading" class="f-col">Description</span>
+        <span role="heading" class="transaction-list__amount">Amount</span>
+        <span role="heading" class="transaction-list__actions">Actions</span>
       </li>
       <transition-group name="fade">
         <li class="f-row transaction-list__item" v-for="(item, key) in sorted_transactions" :key="key">
           <span class="transaction-list__date">{{ item.createdAt | date }}</span>
           <span class="f-col">{{ item.description }}</span>
           <span class="transaction-list__amount">R$ {{ item.value }}</span>
-          <span class="transaction-list__actions"><a @click="$_remove(item)">Remove</a></span>
+          <span role="button" class="transaction-list__actions"><a @click="$_remove(item)">Remove</a></span>
         </li>
       </transition-group>
     </ul>
@@ -99,9 +99,10 @@ export default {
   computed: {
     total_amount () {
       if (!this.transactions.length) return 0
-      return this.transactions.reduce((acumulador, actual) => {
+      let total = this.transactions.reduce((acumulador, actual) => {
         return acumulador + actual.valueAsNumber()
-      }, 0).toFixed(2)
+      }, 0)
+      return total
     },
     sorted_transactions () {
       let sorted = this.transactions.slice()

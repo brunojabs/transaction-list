@@ -37,7 +37,7 @@
         data-vv-as="transactionCreation"
         name="transactionCreation">
       </custom-input>
-      <button class="tl-button" @click="$_saveTransaction">Save</button>
+      <button class="tl-button" aria-label="Save new transaction" @click="$_saveTransaction">Save</button>
     </div>
     <transaction-list :transactions="transactions"></transaction-list>
   </section>
