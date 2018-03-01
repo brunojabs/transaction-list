@@ -60,10 +60,6 @@ module.exports = {
         }
       },
       {
-        test: /manifest.json$/,
-        loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
-      },
-      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
