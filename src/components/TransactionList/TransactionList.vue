@@ -17,12 +17,29 @@
           <span class="transaction-list__amount"><span class="transaction-list__mobile-title">Amount: </span>R$ {{ item.value }}</span>
           <span role="button" class="transaction-list__actions"><a class="transaction-list__actions-remove" @click="$_remove(item)">Remove</a></span>
         </li>
+        <li class="f-row transaction-list__item" key="-2">
+          <span class="transaction-list__date">
+          </span>
+          <span class="f-col transaction-list__description.f-col">Incoming</span>
+          <span class="transaction-list__amount">R$ {{ positive_amount }}</span>
+          <span role="button" class="transaction-list__actions"></span>
+        </li>
+        <li class="f-row transaction-list__item" key="-1">
+          <span class="transaction-list__date">
+          </span>
+          <span class="f-col transaction-list__description.f-col">Outcoming</span>
+          <span class="transaction-list__amount --negative">R$ {{ negative_amount }}</span>
+          <span role="button" class="transaction-list__actions"></span>
+        </li>
+        <li class="f-row transaction-list__item" key="-3">
+          <span class="transaction-list__date">
+          </span>
+          <span class="f-col transaction-list__description.f-col">Total</span>
+          <span class="transaction-list__amount">R$ {{ total_amount }}</span>
+          <span role="button" class="transaction-list__actions"></span>
+        </li>
       </transition-group>
     </ul>
-    <div class="transaction-list__total">
-      <span class="transaction-list__total-label">Total:</span>
-      R$ {{ total_amount }}
-    </div>
   </section>
 </template>
 <style lang="less">
@@ -41,6 +58,10 @@
     flex-basis: @base-item-size;
     text-align: left;
     white-space: nowrap;
+
+    &.--negative {
+      color: @red;
+    }
   }
 
   &__item {
@@ -72,12 +93,6 @@
     text-align: left;
     width: @base-item-size + @exs-spacer + @actions-size;
     display: block;
-  }
-
-  &__total-label {
-    display: block;
-    font-weight: bold;
-    margin-top: @exs-spacer;
   }
 
   &__title {
@@ -137,6 +152,20 @@ export default {
       if (!this.transactions.length) return 0
       let total = this.transactions.reduce((acumulador, actual) =>
         acumulador + actual.valueAsNumber(), 0)
+      return Number(total.toFixed(2))
+    },
+    negative_amount () {
+      const total = this.transactions.reduce((acc, actual) => {
+        const valueAsNumber = actual.valueAsNumber()
+        return valueAsNumber < 0 ? acc + valueAsNumber : acc
+      }, 0)
+      return Number(total.toFixed(2))
+    },
+    positive_amount () {
+      const total = this.transactions.reduce((acc, actual) => {
+        const valueAsNumber = actual.valueAsNumber()
+        return valueAsNumber > 0 ? acc + valueAsNumber : acc
+      }, 0)
       return Number(total.toFixed(2))
     },
     sorted_transactions () {

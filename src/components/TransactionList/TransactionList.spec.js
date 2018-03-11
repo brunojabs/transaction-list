@@ -24,6 +24,14 @@ describe('TransactionList', () => {
     expect(transactionList.vm.total_amount).toEqual(1999.40)
   })
 
+  it('calculate the negative amount', () => {
+    expect(transactionList.vm.negative_amount).toEqual(-1000.90)
+  })
+
+  it('calculate the positive amount', () => {
+    expect(transactionList.vm.positive_amount).toEqual(3000.30)
+  })
+
   it('sort the total list by date with older in last position', () => {
     expect(transactionList.vm.sorted_transactions[2].value).toEqual('-1000.90')
   })
